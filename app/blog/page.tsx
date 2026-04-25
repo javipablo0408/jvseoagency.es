@@ -64,9 +64,11 @@ export default function BlogPage() {
               </div>
               <div className="relative hidden md:block">
                 <div className="rounded-3xl border border-white/30 bg-white/10 p-8 backdrop-blur-md">
-                  <p className="text-[10px] uppercase tracking-[0.22em] text-white/85">Aprendizaje</p>
+                  <p className="text-[10px] uppercase tracking-[0.22em] text-white/85">
+                    {featured.readingMinutes} min de lectura
+                  </p>
                   <p className="mt-3 text-2xl font-semibold leading-tight text-white">
-                    Estructura y copy para pasar de visitas a clientes reales.
+                    {featured.excerpt}
                   </p>
                 </div>
               </div>
