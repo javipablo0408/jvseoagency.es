@@ -7,13 +7,14 @@ import { ScrollHighlightText } from "@/components/scroll-highlight-text";
 import { HorizontalShowcase, ShowcaseCard } from "@/components/horizontal-showcase";
 import { BigNumberReveal, BigMetric } from "@/components/big-number-reveal";
 import { MagneticButton } from "@/components/magnetic-button";
+import { useIsMobile } from "@/lib/use-is-mobile";
 
 type LeadState = "idle" | "sending" | "success" | "error";
 
 const sectionFade = {
   initial: { opacity: 0, y: 28 },
   whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, amount: 0.25 },
+  viewport: { once: true, amount: 0.1 },
   transition: { duration: 0.7, ease: [0.23, 1, 0.32, 1] }
 };
 
@@ -159,6 +160,8 @@ export function LandingPage() {
   const heroRef = useRef<HTMLElement | null>(null);
   const deviceRef = useRef<HTMLElement | null>(null);
   const reduceMotion = useReducedMotion() ?? false;
+  const isMobile = useIsMobile();
+  const lite = reduceMotion || isMobile;
   const preset = motionPresetConfig[ACTIVE_MOTION_PRESET];
   const { scrollYProgress: heroProgress } = useScroll({
     target: heroRef,
@@ -178,22 +181,22 @@ export function LandingPage() {
     [reduceMotion]
   );
 
-  const heroTitleY = useTransform(heroProgress, [0, 1], [0, reduceMotion ? 0 : -160]);
-  const heroTitleScale = useTransform(heroProgress, [0, 1], [1, reduceMotion ? 1 : 0.82]);
-  const heroOpacity = useTransform(heroProgress, [0, 0.85], [1, reduceMotion ? 1 : 0.0]);
-  const heroBlur = useTransform(heroProgress, [0, 1], reduceMotion ? ["0px", "0px"] : ["0px", "12px"]);
+  const heroTitleY = useTransform(heroProgress, [0, 1], [0, lite ? 0 : -160]);
+  const heroTitleScale = useTransform(heroProgress, [0, 1], [1, lite ? 1 : 0.82]);
+  const heroOpacity = useTransform(heroProgress, [0, 0.85], [1, lite ? 1 : 0.0]);
+  const heroBlur = useTransform(heroProgress, [0, 1], lite ? ["0px", "0px"] : ["0px", "12px"]);
   const heroFilter = useTransform(heroBlur, (b) => `blur(${b})`);
 
-  const orbHeroY = useTransform(heroProgress, [0, 1], [0, reduceMotion ? 0 : 220]);
-  const orbHeroScale = useTransform(heroProgress, [0, 1], [1, reduceMotion ? 1 : 1.6]);
+  const orbHeroY = useTransform(heroProgress, [0, 1], [0, lite ? 0 : 220]);
+  const orbHeroScale = useTransform(heroProgress, [0, 1], [1, lite ? 1 : 1.6]);
 
-  const deviceScale = useTransform(deviceProgress, [0, 0.45, 1], [reduceMotion ? 1 : 0.78, 1.05, reduceMotion ? 1 : 1.18]);
-  const deviceRotateX = useTransform(deviceProgress, [0, 0.5, 1], [reduceMotion ? 0 : 18, 0, reduceMotion ? 0 : -10]);
-  const deviceRotateY = useTransform(deviceProgress, [0, 0.5, 1], [reduceMotion ? 0 : -14, 0, reduceMotion ? 0 : 10]);
+  const deviceScale = useTransform(deviceProgress, [0, 0.45, 1], [lite ? 1 : 0.78, 1.05, lite ? 1 : 1.18]);
+  const deviceRotateX = useTransform(deviceProgress, [0, 0.5, 1], [lite ? 0 : 18, 0, lite ? 0 : -10]);
+  const deviceRotateY = useTransform(deviceProgress, [0, 0.5, 1], [lite ? 0 : -14, 0, lite ? 0 : 10]);
   const screenOneOpacity = useTransform(deviceProgress, [0, 0.2, 0.35], [1, 1, 0]);
   const screenTwoOpacity = useTransform(deviceProgress, [0.3, 0.5, 0.7], [0, 1, 0]);
   const screenThreeOpacity = useTransform(deviceProgress, [0.65, 0.82, 1], [0, 1, 1]);
-  const deviceTextY = useTransform(deviceProgress, [0, 1], [reduceMotion ? 0 : 60, reduceMotion ? 0 : -60]);
+  const deviceTextY = useTransform(deviceProgress, [0, 1], [lite ? 0 : 60, lite ? 0 : -60]);
 
   const progressScaleX = useSpring(pageProgress, { stiffness: 130, damping: 28, mass: 0.2 });
 
@@ -263,8 +266,10 @@ export function LandingPage() {
       >
         <motion.div
           aria-hidden
-          style={{ y: orbHeroY, scale: orbHeroScale }}
-          className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[680px] w-[680px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,_rgba(59,140,255,0.45)_0%,_rgba(124,212,255,0.18)_45%,_transparent_70%)] blur-2xl shimmer-glow"
+          style={isMobile ? {} : { y: orbHeroY, scale: orbHeroScale }}
+          className={`pointer-events-none absolute left-1/2 top-1/2 -z-10 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,_rgba(59,140,255,0.45)_0%,_rgba(124,212,255,0.18)_45%,_transparent_70%)] shimmer-glow ${
+            isMobile ? "h-[320px] w-[320px] blur-xl" : "h-[680px] w-[680px] blur-2xl"
+          }`}
         />
 
         <motion.div
@@ -374,73 +379,108 @@ export function LandingPage() {
         metrics={heroMetrics}
       />
 
-      <section ref={deviceRef} className="relative my-16 h-[230vh] perspective-1200">
-        <div className="sticky top-0 flex h-screen items-center">
-          <div className="mx-auto grid w-full max-w-6xl items-center gap-12 px-6 md:grid-cols-[1fr_1.1fr] md:px-10">
-            <motion.div style={{ y: deviceTextY }}>
-              <p className="text-xs uppercase tracking-[0.32em] text-sky-200/85">Producto en vivo</p>
-              <h2 className="mt-5 max-w-xl text-balance text-3xl font-semibold leading-tight md:text-6xl">
-                Diseñado en pantalla,
-                <span className="text-gradient-cool"> medido en negocio.</span>
-              </h2>
-              <p className="mt-5 max-w-xl text-slate-300 md:text-lg">
-                Cada interfaz que construimos está pensada para activar una métrica concreta:
-                conversión, tiempo de respuesta o eficiencia operativa.
-              </p>
-              <ul className="mt-8 space-y-3 text-sm text-slate-200 md:text-base">
-                <li className="flex items-center gap-3">
-                  <span className="h-2 w-2 rounded-full bg-cyan-300" />
-                  Automatización conectada a CRM y soporte
-                </li>
-                <li className="flex items-center gap-3">
-                  <span className="h-2 w-2 rounded-full bg-indigo-300" />
-                  Catálogos y checkout que elevan conversión
-                </li>
-                <li className="flex items-center gap-3">
-                  <span className="h-2 w-2 rounded-full bg-sky-300" />
-                  Paneles por rol que aceleran la operación
-                </li>
-              </ul>
-            </motion.div>
-
-            <motion.div
-              style={{
-                scale: deviceScale,
-                rotateX: deviceRotateX,
-                rotateY: deviceRotateY
-              }}
-              className="preserve-3d relative mx-auto h-[560px] w-[300px] rounded-[44px] border border-white/15 bg-slate-950 p-3 shadow-[0_60px_180px_rgba(3,10,24,0.7)]"
-            >
-              <div className="absolute inset-0 rounded-[44px] bg-[radial-gradient(circle_at_30%_10%,rgba(125,211,252,0.35),transparent_50%)] opacity-80" />
-              <div className="absolute left-1/2 top-3 h-1.5 w-24 -translate-x-1/2 rounded-full bg-white/25" />
-              <div className="relative h-full overflow-hidden rounded-[36px] border border-white/10 bg-gradient-to-b from-slate-900 to-slate-950">
-                {[screenOneOpacity, screenTwoOpacity, screenThreeOpacity].map((opacity, idx) => (
-                  <motion.article
-                    key={deviceScreens[idx].label}
-                    style={{ opacity }}
-                    className="absolute inset-0 flex flex-col justify-between p-7"
-                  >
-                    <div>
-                      <p className="text-[10px] uppercase tracking-[0.22em] text-sky-200/80">
-                        {deviceScreens[idx].label}
-                      </p>
-                      <h3 className="mt-3 text-2xl font-semibold leading-tight">
-                        {deviceScreens[idx].title}
-                      </h3>
-                    </div>
-                    <div>
-                      <p className="text-gradient-cool text-6xl font-semibold leading-none">
-                        {deviceScreens[idx].metric}
-                      </p>
-                      <p className="mt-4 text-sm text-slate-300">{deviceScreens[idx].detail}</p>
-                    </div>
-                  </motion.article>
-                ))}
-              </div>
-            </motion.div>
+      {isMobile ? (
+        /* Móvil: layout simple sin h-[230vh] ni sticky ni 3D */
+        <section className="my-12 px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
+          >
+            <p className="text-xs uppercase tracking-[0.32em] text-sky-200/85">Producto en vivo</p>
+            <h2 className="mt-4 text-balance text-3xl font-semibold leading-tight">
+              Diseñado en pantalla,
+              <span className="text-gradient-cool"> medido en negocio.</span>
+            </h2>
+            <p className="mt-4 text-slate-300">
+              Cada interfaz que construimos está pensada para activar una métrica concreta.
+            </p>
+          </motion.div>
+          <div className="mt-8 grid gap-4">
+            {deviceScreens.map((screen, idx) => (
+              <motion.div
+                key={screen.label}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ duration: 0.55, delay: idx * 0.07, ease: [0.23, 1, 0.32, 1] }}
+                className="glass-strong rounded-3xl p-6"
+              >
+                <p className="text-[10px] uppercase tracking-[0.22em] text-sky-200/80">{screen.label}</p>
+                <h3 className="mt-2 text-xl font-semibold leading-tight">{screen.title}</h3>
+                <p className="text-gradient-cool mt-3 text-4xl font-semibold leading-none">{screen.metric}</p>
+                <p className="mt-3 text-sm text-slate-300">{screen.detail}</p>
+              </motion.div>
+            ))}
           </div>
-        </div>
-      </section>
+        </section>
+      ) : (
+        /* Desktop: versión 3D con sticky scroll */
+        <section ref={deviceRef} className="relative my-16 h-[230vh] perspective-1200">
+          <div className="sticky top-0 flex h-screen items-center">
+            <div className="mx-auto grid w-full max-w-6xl items-center gap-12 px-6 md:grid-cols-[1fr_1.1fr] md:px-10">
+              <motion.div style={{ y: deviceTextY }}>
+                <p className="text-xs uppercase tracking-[0.32em] text-sky-200/85">Producto en vivo</p>
+                <h2 className="mt-5 max-w-xl text-balance text-3xl font-semibold leading-tight md:text-6xl">
+                  Diseñado en pantalla,
+                  <span className="text-gradient-cool"> medido en negocio.</span>
+                </h2>
+                <p className="mt-5 max-w-xl text-slate-300 md:text-lg">
+                  Cada interfaz que construimos está pensada para activar una métrica concreta:
+                  conversión, tiempo de respuesta o eficiencia operativa.
+                </p>
+                <ul className="mt-8 space-y-3 text-sm text-slate-200 md:text-base">
+                  <li className="flex items-center gap-3">
+                    <span className="h-2 w-2 rounded-full bg-cyan-300" />
+                    Automatización conectada a CRM y soporte
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <span className="h-2 w-2 rounded-full bg-indigo-300" />
+                    Catálogos y checkout que elevan conversión
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <span className="h-2 w-2 rounded-full bg-sky-300" />
+                    Paneles por rol que aceleran la operación
+                  </li>
+                </ul>
+              </motion.div>
+
+              <motion.div
+                style={{ scale: deviceScale, rotateX: deviceRotateX, rotateY: deviceRotateY }}
+                className="preserve-3d relative mx-auto h-[560px] w-[300px] rounded-[44px] border border-white/15 bg-slate-950 p-3 shadow-[0_60px_180px_rgba(3,10,24,0.7)]"
+              >
+                <div className="absolute inset-0 rounded-[44px] bg-[radial-gradient(circle_at_30%_10%,rgba(125,211,252,0.35),transparent_50%)] opacity-80" />
+                <div className="absolute left-1/2 top-3 h-1.5 w-24 -translate-x-1/2 rounded-full bg-white/25" />
+                <div className="relative h-full overflow-hidden rounded-[36px] border border-white/10 bg-gradient-to-b from-slate-900 to-slate-950">
+                  {[screenOneOpacity, screenTwoOpacity, screenThreeOpacity].map((opacity, idx) => (
+                    <motion.article
+                      key={deviceScreens[idx].label}
+                      style={{ opacity }}
+                      className="absolute inset-0 flex flex-col justify-between p-7"
+                    >
+                      <div>
+                        <p className="text-[10px] uppercase tracking-[0.22em] text-sky-200/80">
+                          {deviceScreens[idx].label}
+                        </p>
+                        <h3 className="mt-3 text-2xl font-semibold leading-tight">
+                          {deviceScreens[idx].title}
+                        </h3>
+                      </div>
+                      <div>
+                        <p className="text-gradient-cool text-6xl font-semibold leading-none">
+                          {deviceScreens[idx].metric}
+                        </p>
+                        <p className="mt-4 text-sm text-slate-300">{deviceScreens[idx].detail}</p>
+                      </div>
+                    </motion.article>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+      )}
 
       <ScrollHighlightText
         eyebrow="Cómo trabajamos"
@@ -461,7 +501,7 @@ export function LandingPage() {
                 key={item}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.5 }}
+                viewport={{ once: true, amount: 0.12 }}
                 transition={{ duration: 0.55, delay: index * 0.08, ease: [0.23, 1, 0.32, 1] }}
                 className="glass-strong interactive-lift rounded-3xl p-7"
               >
@@ -490,7 +530,7 @@ export function LandingPage() {
                   key={cap}
                   initial={{ opacity: 0, y: 24 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.4 }}
+                  viewport={{ once: true, amount: 0.1 }}
                   transition={{ duration: 0.5, delay: index * 0.05, ease: [0.23, 1, 0.32, 1] }}
                   className="glass interactive-lift rounded-2xl px-4 py-3 text-sm text-slate-200"
                 >
@@ -512,7 +552,7 @@ export function LandingPage() {
                 key={item.author}
                 initial={{ opacity: 0, y: 28 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.35 }}
+                viewport={{ once: true, amount: 0.1 }}
                 transition={{ duration: 0.6, delay: index * 0.08, ease: [0.23, 1, 0.32, 1] }}
                 className="glass-strong interactive-lift rounded-3xl p-7"
               >
@@ -538,7 +578,7 @@ export function LandingPage() {
                 key={faq.q}
                 initial={{ opacity: 0, y: 22 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.4 }}
+                viewport={{ once: true, amount: 0.1 }}
                 transition={{ duration: 0.5, delay: index * 0.06, ease: [0.23, 1, 0.32, 1] }}
                 className="glass interactive-lift rounded-2xl p-7"
               >
