@@ -5,7 +5,7 @@ const leadSchema = z.object({
   name: z.string().min(2).max(80),
   email: z.string().email().max(120),
   company: z.string().max(120).optional(),
-  interest: z.enum(["web", "app", "both"]),
+  interest: z.enum(["web", "app", "automation", "full"]),
   message: z.string().min(10).max(2000),
   website: z.string().max(0).optional()
 });
