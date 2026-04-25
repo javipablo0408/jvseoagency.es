@@ -303,4 +303,117 @@ export const blogPosts: BlogPost[] = [
       }
     ]
   },
+  // ── ARTÍCULOS DE ALTO VALOR (escritos con skill write-seo-geo-content) ────
+  {
+    slug: "n8n-vs-make-vs-zapier",
+    title: "n8n vs Make vs Zapier: cuál usar en tu empresa en 2026",
+    excerpt: "Comparativa honesta de las tres plataformas de automatización más usadas: precios reales, límites, casos ideales y cuál conviene según tu situación.",
+    category: "Automatización",
+    readingMinutes: 10,
+    datePublished: "2026-04-25",
+    content:
+      "Elegir entre n8n, Make y Zapier es una de las primeras decisiones técnicas que toma cualquier empresa que quiere automatizar sus procesos. La elección incorrecta puede costarte entre un 60% y un 90% más al mes, o bloquearte cuando el flujo crece en complejidad. Esta comparativa está escrita desde la implementación real: hemos trabajado con las tres plataformas en proyectos para pymes y empresas medianas en España.",
+    sections: [
+      {
+        heading: "¿Cuál es la diferencia entre n8n, Make y Zapier?",
+        body: "Las tres son plataformas de automatización de flujos de trabajo, pero con filosofías distintas. Zapier es la más accesible para perfiles no técnicos: interfaz lineal, más de 6.000 integraciones y configuración en minutos. Make (antes Integromat) usa un canvas visual con lógica ramificada, lo que permite flujos más complejos a menor coste. n8n es la única de las tres que se puede autoalojar, tiene nodos nativos de IA y ofrece el coste por ejecución más bajo a escala. En resumen: Zapier para empezar rápido, Make para lógica visual avanzada, n8n para máxima flexibilidad y control de costes."
+      },
+      {
+        heading: "Precios reales: lo que nadie te dice",
+        body: "Zapier cobra por tarea, y cada paso de un flujo cuenta como una tarea separada. Un flujo de 5 pasos que se ejecuta 1.000 veces al mes consume 5.000 tareas. El plan Starter de Zapier (29,99€/mes) incluye solo 750 tareas, lo que lo agota en 150 ejecuciones de ese flujo. Make cobra por operación con un modelo similar, pero a menor precio: el plan Core (10,59€/mes) incluye 10.000 operaciones, unas 5-6 veces más volumen que Zapier al mismo precio. n8n Cloud cobra por ejecución completa del flujo (no por paso), desde 24€/mes con 2.500 ejecuciones. Para 50.000 ejecuciones mensuales, n8n cuesta 70€ frente a los 900€ o más de Zapier. Si te autoalojas n8n, el coste es solo el del servidor: entre 5€ y 20€/mes."
+      },
+      {
+        heading: "Tabla comparativa: n8n vs Make vs Zapier",
+        body: "Integraciones nativas: Zapier 6.000+, Make 1.500+, n8n 400+ (más nodos personalizados). Precio de entrada: Zapier 29,99€/mes (750 tareas), Make 10,59€/mes (10K ops), n8n 24€/mes (2.500 ejecuciones) o gratis autoalojado. Complejidad de flujos: Zapier lineal/moderada, Make visual/alta, n8n código/muy alta. IA nativa: Zapier básica, Make moderada, n8n avanzada con agentes LLM. Autoalojamiento: solo n8n. Curva de aprendizaje: Zapier baja, Make media, n8n media-alta. Mejor para: Zapier → no técnicos y flujos simples; Make → ops teams con lógica visual; n8n → developers, agencias y volumen alto."
+      },
+      {
+        heading: "Cuándo elegir Zapier",
+        body: "Zapier es la opción correcta si tu equipo no tiene perfil técnico, necesitas conectar aplicaciones muy específicas (Zapier tiene el mayor catálogo), y el volumen de ejecuciones es bajo (menos de 500 al mes). También si la velocidad de configuración es más importante que el coste: un flujo en Zapier puede estar activo en 15 minutos sin tocar código. La limitación principal es el precio a escala: si tus automatizaciones crecen, el coste crece de forma desproporcionada. Un equipo comercial con 2.000 leads mensuales cualificados por un flujo de 4 pasos consumirá 8.000 tareas al mes, lo que supera el plan más básico."
+      },
+      {
+        heading: "Cuándo elegir Make",
+        body: "Make es el punto intermedio ideal para equipos de operaciones que necesitan lógica visual compleja sin entrar en código. Su canvas permite construir flujos con ramificaciones, iteradores, agregadores y manejo de errores de forma visual. El precio es entre 3 y 5 veces más barato que Zapier para el mismo volumen. Es la elección habitual para: ecommerce con lógica de pedidos, CRMs con flujos de cualificación multietapa, y sincronización de datos entre plataformas. La limitación es que el autoalojamiento no está disponible, lo que puede ser un problema si manejas datos sensibles o necesitas cumplir normativas de privacidad específicas."
+      },
+      {
+        heading: "Cuándo elegir n8n",
+        body: "n8n es la elección correcta para equipos con algún perfil técnico (no es necesario ser programador, pero ayuda) que necesitan: máxima flexibilidad en la lógica de flujo, integración nativa de modelos IA (GPT-4o, Claude, modelos locales con Ollama), autoalojamiento por privacidad o costes, o volumen alto de ejecuciones donde el coste por tarea de Zapier o Make se dispara. En JVSEO Agency usamos n8n como plataforma principal para todas las automatizaciones de clientes, porque permite construir desde un flujo de cualificación de leads sencillo hasta un sistema multi-agente con memoria, herramientas externas y lógica de negocio compleja, todo en la misma herramienta."
+      },
+      {
+        heading: "Preguntas frecuentes sobre n8n, Make y Zapier",
+        body: "¿Puedo migrar de Zapier a n8n? Sí. La mayoría de flujos de Zapier se pueden replicar en n8n. El proceso tarda entre 1 y 4 horas por flujo dependiendo de la complejidad. ¿n8n es difícil de aprender? Tiene una curva mayor que Zapier, pero cualquier persona con conocimientos básicos de lógica puede construir flujos en n8n en una o dos semanas. ¿Puedo usar n8n gratis? Sí. La versión autoalojada es completamente gratuita. Solo pagas el servidor (desde 5€/mes en DigitalOcean o Hetzner). ¿Make o n8n para una agencia? Para agencias que gestionan automatizaciones de múltiples clientes, n8n es más rentable a escala y el autoalojamiento facilita la separación de entornos por cliente."
+      }
+    ]
+  },
+  {
+    slug: "chatbot-whatsapp-empresas-guia",
+    title: "Chatbot para WhatsApp Business: guía completa para empresas 2026",
+    excerpt: "Cómo crear e implementar un chatbot en WhatsApp Business para tu empresa: tipos, herramientas, costes y pasos concretos para empezar esta semana.",
+    category: "Automatización",
+    readingMinutes: 11,
+    datePublished: "2026-04-25",
+    content:
+      "WhatsApp tiene una tasa de apertura del 95-98% frente al 20-25% del email, y el 90% de los mensajes se leen en menos de 3 minutos. Para una empresa que recibe consultas, gestiona pedidos o hace seguimiento comercial, eso significa que un chatbot de WhatsApp bien configurado puede ser la automatización con mayor retorno de toda la operación. Esta guía explica cómo hacerlo, con qué herramientas y qué esperar en cada fase.",
+    sections: [
+      {
+        heading: "¿Qué es un chatbot de WhatsApp Business y para qué sirve?",
+        body: "Un chatbot de WhatsApp Business es un sistema automatizado que responde mensajes, califica consultas, agenda citas o procesa pedidos a través de WhatsApp, sin intervención humana para las interacciones repetitivas. Existen dos niveles: automatizaciones básicas (respuestas a palabras clave, mensajes de bienvenida, horarios fuera de oficina), disponibles gratis en la app de WhatsApp Business, y chatbots avanzados con IA conversacional, conectados a la WhatsApp Business API, que interpretan lenguaje natural y pueden integrarse con CRM, calendarios o sistemas de pedidos. Las empresas que usan IA conversacional frente a automatizaciones básicas reportan un 35% más de conversión en consultas entrantes, según datos de Aunoa.ai (2026)."
+      },
+      {
+        heading: "WhatsApp Business App vs WhatsApp Business API: cuál necesitas",
+        body: "La app de WhatsApp Business es gratuita y suficiente si tienes un volumen bajo de mensajes (menos de 50 al día) y un equipo pequeño. Permite un solo usuario activo, respuestas automáticas con palabras clave y catálogo de productos. La WhatsApp Business API es necesaria si necesitas que múltiples agentes respondan desde la misma cuenta, integrar un chatbot con IA real, conectar con tu CRM o sistema de pedidos, enviar mensajes proactivos (campañas de seguimiento o recordatorios), o gestionar más de 50-100 conversaciones diarias. El acceso a la API se consigue a través de proveedores oficiales (BSPs) como Twilio, 360dialog o Vonage. El coste por conversación varía entre 0,05€ y 0,12€ según el tipo de mensaje y la región."
+      },
+      {
+        heading: "Cómo crear un chatbot de WhatsApp con n8n: pasos concretos",
+        body: "Paso 1: Configura una cuenta en WhatsApp Business API a través de un BSP como 360dialog (el más económico para España, desde 49€/mes). Paso 2: Conecta el número a n8n usando el nodo de WhatsApp o el webhook de Twilio. Esto te da acceso a todos los mensajes entrantes como eventos en tiempo real. Paso 3: Define el árbol de conversación: qué responde el bot a cada tipo de mensaje, cuándo escala a humano y qué datos recoge. Paso 4: Conecta el modelo de IA. Con n8n puedes usar GPT-4o o Claude directamente: el usuario escribe en lenguaje natural, el modelo interpreta la intención y responde según el contexto que defines. Paso 5: Integra con tu CRM o calendario. Cada lead cualificado se registra automáticamente con nombre, consulta y fase del embudo. El tiempo de implementación de un chatbot funcional con este stack es de 2 a 5 días laborables."
+      },
+      {
+        heading: "Casos de uso reales con mayor ROI",
+        body: "Cualificación de leads entrantes: el chatbot recibe la consulta, pregunta por el tipo de proyecto, presupuesto estimado y plazo, y envía al CRM solo los leads que cumplen el perfil ideal. Las empresas que implementan este flujo reducen el tiempo de cualificación manual entre un 70% y un 90%. Gestión de reservas y citas: el chatbot consulta la disponibilidad en Google Calendar o Calendly y confirma la cita sin intervención humana. Ideal para clínicas, consultoras y agencias de servicios. Soporte de nivel 1: el chatbot responde las 30-40 preguntas más frecuentes (precios, tiempos de entrega, condiciones, proceso de trabajo) y escala al equipo solo cuando la consulta no tiene respuesta en la base de conocimiento. Según datos de implementaciones en banca y ecommerce, los chatbots resuelven entre el 60% y el 80% de las consultas sin intervención humana."
+      },
+      {
+        heading: "Cuánto cuesta un chatbot de WhatsApp para una empresa",
+        body: "La opción más económica (chatbot básico con palabras clave) es gratuita si usas la app de WhatsApp Business directamente, pero tiene limitaciones severas de escalabilidad. Un chatbot con IA real conectado a la API tiene un coste de implementación de entre 1.500€ y 4.000€ dependiendo de la complejidad del árbol de conversación y las integraciones necesarias. El coste mensual de operación incluye: BSP (acceso a la API, desde 49€/mes), costes de conversación de WhatsApp (0,05-0,12€ por conversación), y modelo de IA (GPT-4o o Claude, entre 20€ y 150€/mes según volumen). Para una empresa con 500 conversaciones mensuales, el coste operativo total es de entre 90€ y 180€/mes. El retorno sobre esa inversión suele ser positivo en el primer mes si el chatbot cualifica o responde consultas que antes consumían tiempo de equipo."
+      },
+      {
+        heading: "Errores frecuentes al implementar un chatbot de WhatsApp",
+        body: "El error más caro es diseñar un chatbot que nunca escala a humano. Los usuarios que no pueden hablar con una persona cuando lo necesitan abandonan la conversación y pierdes el lead. La regla práctica: si el bot no puede resolver en 3 turnos, debe ofrecer hablar con el equipo. Otro error habitual es no definir el tono y el contexto del bot antes de conectar el modelo de IA. Un modelo sin instrucciones específicas puede dar respuestas genéricas o contradictorias con tu propuesta de valor. Siempre define un system prompt detallado que incluya quién eres, qué servicios ofreces, qué preguntas puede responder el bot y cuándo debe escalar. Por último, no medir la tasa de resolución del bot vs. derivaciones a humano: sin ese dato, no puedes mejorar el sistema."
+      }
+    ]
+  },
+  {
+    slug: "automatizacion-procesos-pymes-espana",
+    title: "Automatización de procesos en pymes españolas: guía práctica 2026",
+    excerpt: "El 73% de las pymes españolas aún no ha automatizado ningún proceso. Esta guía explica por dónde empezar, qué procesos tienen mayor ROI y cómo evitar los errores más caros.",
+    category: "Automatización",
+    readingMinutes: 10,
+    datePublished: "2026-04-25",
+    content:
+      "El 73% de las pymes españolas no ha automatizado ningún proceso con inteligencia artificial, según datos de Javadex (2026). Sin embargo, las que sí lo han hecho crecen 2,3 veces más rápido que las que no, y recuperan en promedio 4,2 horas diarias por empresa. La brecha entre pymes que automatizan y las que no se está ampliando de forma acelerada. Esta guía está escrita para los que quieren cerrar esa brecha sin cometer los errores que cuestan tiempo y dinero.",
+    sections: [
+      {
+        heading: "Por qué el 73% de las pymes españolas aún no automatiza",
+        body: "Según el estudio de Zulu Labs Research (2026), las tres barreras principales son: el 58% desconoce qué soluciones existen, el 47% sobreestima el coste en hasta un 300%, y el 39% cree que necesita equipo técnico interno. Los tres obstáculos son mitos. Las herramientas actuales como n8n, Make o Zapier no requieren programación para flujos básicos. El coste de una primera automatización parte de 500€ para flujos simples. Y la implementación se puede externalizar completamente: no necesitas un técnico en plantilla para automatizar tu proceso de cualificación de leads o tu reporting semanal."
+      },
+      {
+        heading: "Qué procesos tienen mayor ROI para una pyme",
+        body: "Según datos de AutomatizaPyme (2026), los cinco procesos con mayor retorno de inversión para pymes son: gestión de emails y leads (64% de las pymes que los automatizan reportan ROI positivo en menos de 60 días), facturación y cobros (71% de adopción entre pymes que ya automatizan), informes y reportes periódicos (58%), atención al cliente con chatbot (47%), y gestión de inventario (42%). El proceso con mayor rapidez de implementación y menor riesgo para empezar es la cualificación de leads entrantes: recibir el formulario de contacto, evaluar si cumple el perfil ideal, enviar una respuesta automática personalizada y registrar el lead en el CRM. Con n8n o Make, ese flujo se puede tener funcionando en menos de 48 horas."
+      },
+      {
+        heading: "Cómo calcular el ROI de una automatización antes de implementarla",
+        body: "El cálculo es directo. Necesitas tres datos: (1) cuántas veces a la semana se ejecuta la tarea, (2) cuánto tiempo lleva cada ejecución, y (3) el coste hora de la persona que la hace. Si cualificas 50 leads por semana y cada cualificación tarda 15 minutos, son 12,5 horas semanales. A 20€/hora de coste empresa, eso es 250€ a la semana o 1.000€ al mes. Una automatización que cuesta 2.500€ se amortiza en 2,5 meses. Después de eso, cada mes tienes 1.000€ de ahorro neto. Según Zulu Labs Research, el ROI medio de las automatizaciones en pymes españolas es del 340% en el primer año, con un periodo de recuperación de 3,8 meses."
+      },
+      {
+        heading: "El método para implementar tu primera automatización sin cometer errores",
+        body: "El error más frecuente es intentar automatizar un proceso que no está documentado. Antes de conectar ninguna herramienta, escribe el proceso actual paso a paso: qué información entra, quién la procesa, qué decisiones se toman y qué sale al final. Si el proceso tiene más de 5 excepciones frecuentes, primero estandarízalo manualmente durante dos semanas y luego automatízalo. Una vez documentado, elige la herramienta según el volumen y la complejidad (n8n para alta complejidad y volumen, Make para lógica visual, Zapier para simplicidad), construye el flujo, pruébalo con 10-20 casos reales antes de activarlo en producción, y define una métrica de éxito clara (tiempo ahorrado, leads cualificados por hora, errores por semana)."
+      },
+      {
+        heading: "Casos reales: qué automatizan las pymes que mejor resultado obtienen",
+        body: "Una consultora de recursos humanos en Madrid automatizó la recepción de candidaturas, el envío de confirmación personalizada y la clasificación inicial por perfil con n8n y GPT-4o. Resultado: el tiempo de criba de 200 candidaturas pasó de 8 horas a 45 minutos semanales. Una tienda online de productos de alimentación automatizó el seguimiento de pedidos pendientes de pago, el recordatorio de carrito abandonado y el aviso de stock bajo. Resultado: la tasa de cobro de pedidos pendientes mejoró un 23% y el equipo recuperó 12 horas semanales de gestión manual. Una agencia de marketing automatizó la generación del informe semanal de resultados para cada cliente con datos de GA4, Search Console y Meta Ads. El informe que tardaba 2 horas por cliente se genera ahora en 4 minutos."
+      },
+      {
+        heading: "Herramientas de automatización para pymes españolas: resumen",
+        body: "Para pymes que empiezan sin equipo técnico, Make es el punto de entrada más equilibrado: precio razonable, lógica visual avanzada y suficientes integraciones para el 90% de los casos. Para pymes con un perfil técnico interno o que externalizan con una agencia, n8n ofrece la mayor flexibilidad y el menor coste a escala, especialmente con la opción de autoalojamiento. Zapier solo tiene sentido si el número de integraciones muy específicas que necesitas solo están en Zapier, o si el equipo valora la simplicidad extrema por encima del coste. En JVSEO Agency implementamos automatizaciones para pymes en Madrid y toda España usando n8n como plataforma principal, con integraciones a medida según el stack de cada empresa."
+      }
+    ]
+  },
 ];
