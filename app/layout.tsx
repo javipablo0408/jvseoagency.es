@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { SiteHeader } from "@/components/site-header";
 import { CinematicBackground } from "@/components/cinematic-background";
 import {
@@ -108,6 +109,7 @@ export default function RootLayout({
         <SiteHeader />
         <div className="pt-16">{children}</div>
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
