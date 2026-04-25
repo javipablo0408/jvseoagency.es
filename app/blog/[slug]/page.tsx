@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { blogPosts } from "@/lib/site-data";
+import { blogPosts, BlogSection } from "@/lib/site-data";
 import { AppleReveal } from "@/components/apple-reveal";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { PageHero } from "@/components/page-hero";
@@ -22,7 +22,12 @@ export function generateMetadata({ params }: Props): Metadata {
   return {
     title: post.title,
     description: `${post.excerpt} Guía práctica publicada por JVSEO Agency, agencia digital en Madrid especializada en web, apps y automatización IA.`,
-    alternates: { canonical: `/blog/${post.slug}` }
+    alternates: { canonical: `/blog/${post.slug}` },
+    openGraph: {
+      type: "article",
+      publishedTime: post.datePublished ?? "2025-11-13",
+      authors: ["JVSEO Agency"]
+    }
   };
 }
 
@@ -38,7 +43,7 @@ export default function BlogPostPage({ params }: Props) {
         headline={post.title}
         description={post.excerpt}
         url={`/blog/${post.slug}`}
-        datePublished="2025-11-13"
+        datePublished={post.datePublished ?? "2025-11-13"}
         authorName={siteConfig.authors[0]?.name ?? siteConfig.name}
       />
       <BreadcrumbJsonLd
@@ -68,12 +73,25 @@ export default function BlogPostPage({ params }: Props) {
             <p className="first-letter:text-7xl first-letter:font-semibold first-letter:text-white first-letter:mr-3 first-letter:float-left first-letter:leading-[0.9]">
               {post.content}
             </p>
-            <p>
-              Si te interesa profundizar en cómo aplicar estas ideas en tu negocio, podemos
-              auditar tu situación actual y proponerte una hoja de ruta concreta sin compromiso.
-            </p>
           </div>
         </AppleReveal>
+
+        {post.sections && post.sections.length > 0 && (
+          <div className="space-y-14 pb-4">
+            {post.sections.map((section: BlogSection, idx: number) => (
+              <AppleReveal key={idx} delay={idx * 0.04}>
+                <section>
+                  <h2 className="text-2xl font-semibold leading-snug text-white md:text-3xl">
+                    {section.heading}
+                  </h2>
+                  <p className="mt-4 text-lg leading-relaxed text-slate-300">
+                    {section.body}
+                  </p>
+                </section>
+              </AppleReveal>
+            ))}
+          </div>
+        )}
 
         <AppleReveal>
           <aside className="my-12 grid gap-3 rounded-3xl border border-white/12 bg-slate-900/55 p-7 backdrop-blur-md md:p-10">

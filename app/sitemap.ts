@@ -3,7 +3,6 @@ import { blogPosts, caseStudies } from "@/lib/site-data";
 import { siteConfig } from "@/lib/site-config";
 
 const baseUrl = siteConfig.url;
-const sectorSlugs = ["ecommerce", "legal", "salud", "hosteleria"] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
@@ -11,7 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/servicios/diseno-web",
     "/servicios/diseno-web/madrid",
     "/servicios/desarrollo-apps",
-    ...sectorSlugs.map((s) => `/servicios/automatizacion-ia/${s}`),
+    "/servicios/automatizacion-ia",
     "/casos",
     "/blog",
     "/contacto",

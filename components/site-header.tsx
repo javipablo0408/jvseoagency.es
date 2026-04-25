@@ -4,8 +4,9 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 const navItems = [
-  { label: "Servicios web", href: "/servicios/diseno-web" },
-  { label: "Apps e IA", href: "/servicios/desarrollo-apps" },
+  { label: "Diseño web", href: "/servicios/diseno-web" },
+  { label: "Apps a medida", href: "/servicios/desarrollo-apps" },
+  { label: "Automatización IA", href: "/servicios/automatizacion-ia" },
   { label: "Casos", href: "/casos" },
   { label: "Blog", href: "/blog" },
   { label: "Proceso", href: "/#proceso" },
