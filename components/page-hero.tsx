@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import { useIsMobile } from "@/lib/use-is-mobile";
 
 type PageHeroProps = {
   eyebrow: string;
@@ -14,16 +15,25 @@ type PageHeroProps = {
 export function PageHero({ eyebrow, title, highlight, subtitle, meta }: PageHeroProps) {
   const ref = useRef<HTMLElement | null>(null);
   const reduceMotion = useReducedMotion() ?? false;
+  const isMobile = useIsMobile();
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"]
   });
 
-  const titleY = useTransform(scrollYProgress, [0, 1], [0, reduceMotion ? 0 : -120]);
-  const titleScale = useTransform(scrollYProgress, [0, 1], [1, reduceMotion ? 1 : 0.86]);
-  const titleOpacity = useTransform(scrollYProgress, [0, 0.85], [1, reduceMotion ? 1 : 0.0]);
-  const orbY = useTransform(scrollYProgress, [0, 1], [0, reduceMotion ? 0 : 200]);
-  const orbScale = useTransform(scrollYProgress, [0, 1], [1, reduceMotion ? 1 : 1.5]);
+  // Scroll transforms sólo en desktop — en móvil sin parallax para evitar jank
+  const titleY = useTransform(scrollYProgress, [0, 1], [0, -120]);
+  const titleScale = useTransform(scrollYProgress, [0, 1], [1, 0.86]);
+  const titleOpacity = useTransform(scrollYProgress, [0, 0.85], [1, 0.0]);
+  const orbY = useTransform(scrollYProgress, [0, 1], [0, 200]);
+  const orbScale = useTransform(scrollYProgress, [0, 1], [1, 1.5]);
+
+  const wrapperStyle = (!reduceMotion && !isMobile)
+    ? { y: titleY, scale: titleScale, opacity: titleOpacity }
+    : {};
+  const orbStyle = (!reduceMotion && !isMobile)
+    ? { y: orbY, scale: orbScale }
+    : {};
 
   return (
     <section
@@ -32,12 +42,14 @@ export function PageHero({ eyebrow, title, highlight, subtitle, meta }: PageHero
     >
       <motion.div
         aria-hidden
-        style={{ y: orbY, scale: orbScale }}
-        className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,_rgba(59,140,255,0.4)_0%,_rgba(124,212,255,0.16)_45%,_transparent_70%)] blur-2xl shimmer-glow"
+        style={orbStyle}
+        className={`pointer-events-none absolute left-1/2 top-1/2 -z-10 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,_rgba(59,140,255,0.4)_0%,_rgba(124,212,255,0.16)_45%,_transparent_70%)] shimmer-glow ${
+          isMobile ? "h-[260px] w-[260px] blur-xl" : "h-[500px] w-[500px] blur-2xl"
+        }`}
       />
 
       <motion.div
-        style={{ y: titleY, scale: titleScale, opacity: titleOpacity }}
+        style={wrapperStyle}
         className="relative mx-auto flex max-w-5xl flex-col items-center text-center"
       >
         <motion.p
