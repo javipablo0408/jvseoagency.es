@@ -7,6 +7,8 @@ const navItems = [
   { label: "Diseño web", href: "/servicios/diseno-web" },
   { label: "Apps a medida", href: "/servicios/desarrollo-apps" },
   { label: "Automatización IA", href: "/servicios/automatizacion-ia" },
+  { label: "Precios", href: "/precios" },
+  { label: "Nosotros", href: "/sobre-nosotros" },
   { label: "Casos", href: "/casos" },
   { label: "Blog", href: "/blog" },
   { label: "Proceso", href: "/#proceso" },

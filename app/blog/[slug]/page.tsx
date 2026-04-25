@@ -30,6 +30,21 @@ export function generateMetadata({ params }: Props): Metadata {
   };
 }
 
+const relatedServices: Record<string, { href: string; title: string; desc: string }[]> = {
+  Web: [
+    { href: "/servicios/diseno-web", title: "Diseño web corporativo", desc: "Webs que convierten visitas en leads. Sin plantillas, con SEO incluido." },
+    { href: "/precios", title: "Ver precios de diseño web", desc: "Rangos reales desde 1.500€ sin sorpresas en la factura." }
+  ],
+  Automatización: [
+    { href: "/servicios/automatizacion-ia", title: "Automatización IA para empresas", desc: "Flujos n8n, agentes IA y conexiones a CRM, WhatsApp y email." },
+    { href: "/precios", title: "Ver precios de automatización", desc: "Desde 800€ con ROI estimado en la propuesta." }
+  ],
+  Producto: [
+    { href: "/servicios/desarrollo-apps", title: "Apps a medida", desc: "Paneles, SaaS y apps móviles para procesos de negocio complejos." },
+    { href: "/precios", title: "Ver precios de apps", desc: "Desde 5.000€ con desglose por módulos y fases." }
+  ]
+};
+
 const categoryColor: Record<string, string> = {
   Web: "bg-sky-500/15 text-sky-300 border-sky-400/30",
   Automatización: "bg-fuchsia-500/15 text-fuchsia-300 border-fuchsia-400/30",
@@ -236,7 +251,30 @@ export default function BlogPostPage({ params }: Props) {
         </AppleReveal>
       </article>
 
-      {/* ── ARTÍCULOS RELACIONADOS + CTA ──────────────────────────── */}
+        {/* ── SERVICIOS RELACIONADOS ────────────────────────────────── */}
+        {relatedServices[post.category] && (
+          <AppleReveal>
+            <aside className="mb-16 rounded-3xl border border-indigo-400/20 bg-indigo-500/6 p-7 md:p-9">
+              <p className="text-[11px] uppercase tracking-[0.22em] text-indigo-300/80">JVSEO Agency · Servicios</p>
+              <p className="mt-2 text-lg font-semibold text-white">¿Quieres aplicar esto en tu empresa?</p>
+              <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                {relatedServices[post.category].map((s) => (
+                  <a
+                    key={s.href}
+                    href={s.href}
+                    className="interactive-lift group flex flex-col gap-1 rounded-2xl border border-white/10 bg-white/5 p-5 transition-colors hover:bg-white/10"
+                  >
+                    <span className="font-medium text-white">{s.title}</span>
+                    <span className="text-sm text-slate-400">{s.desc}</span>
+                    <span className="mt-2 text-xs uppercase tracking-[0.18em] text-indigo-300 transition-transform group-hover:translate-x-1">Ver más →</span>
+                  </a>
+                ))}
+              </div>
+            </aside>
+          </AppleReveal>
+        )}
+
+        {/* ── ARTÍCULOS RELACIONADOS + CTA ──────────────────────────── */}
       <div className="mx-auto w-full max-w-6xl px-6 md:px-10">
         <section className="my-20">
           <p className="text-xs uppercase tracking-[0.32em] text-sky-200/85">Sigue leyendo</p>

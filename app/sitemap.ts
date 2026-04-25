@@ -9,12 +9,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "",
     "/servicios/diseno-web",
     "/servicios/diseno-web/madrid",
+    "/servicios/diseno-web/barcelona",
     "/servicios/desarrollo-apps",
     "/servicios/automatizacion-ia",
     "/casos",
     "/blog",
-    "/contacto",
+    "/precios",
     "/sobre-nosotros",
+    "/contacto",
     "/politica-privacidad",
     "/terminos"
   ];
