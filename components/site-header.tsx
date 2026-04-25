@@ -150,8 +150,8 @@ export function SiteHeader() {
                 Agendar llamada
               </a>
               <div className="mt-6 flex flex-col gap-1 text-center text-xs uppercase tracking-[0.18em] text-slate-400">
-                <a href="mailto:info@jvseoagency.es" className="transition hover:text-white">
-                  info@jvseoagency.es
+                <a href="mailto:info@jvseoagency.com" className="transition hover:text-white">
+                  info@jvseoagency.com
                 </a>
                 <a href="tel:+34618967972" className="transition hover:text-white">
                   +34 618 967 972

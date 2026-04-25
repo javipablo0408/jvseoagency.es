@@ -679,7 +679,7 @@ export function LandingPage() {
             <div>
               <p className="text-xs uppercase tracking-[0.2em] text-slate-400">Contacto</p>
               <ul className="mt-3 space-y-2 text-sm text-slate-300">
-                <li>info@jvseoagency.es</li>
+                <li>info@jvseoagency.com</li>
                 <li>+34 618 967 972</li>
                 <li>Madrid, España</li>
               </ul>

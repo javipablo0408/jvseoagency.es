@@ -1,8 +1,8 @@
 export const siteConfig = {
   name: "JVSEO Agency",
   legalName: "JVSEO Agency",
-  url: "https://jvseoagency.es",
-  domain: "jvseoagency.es",
+  url: "https://jvseoagency.com",
+  domain: "jvseoagency.com",
   description:
     "Agencia de desarrollo web, apps a medida y automatización con IA en Madrid. Diseñamos sistemas digitales que venden y escalan operaciones.",
   shortDescription:
@@ -15,7 +15,7 @@ export const siteConfig = {
   postalCode: "28001",
   streetAddress: "Madrid, España",
   phone: "+34 618 967 972",
-  email: "info@jvseoagency.es",
+  email: "info@jvseoagency.com",
   hours: "Mo-Fr 09:00-18:00",
   geo: { lat: 40.4168, lon: -3.7038 },
   sameAs: [

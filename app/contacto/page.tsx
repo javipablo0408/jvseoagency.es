@@ -32,7 +32,7 @@ const contactFaqs = [
 ];
 
 const contactDetails = [
-  { label: "Email", value: "info@jvseoagency.es", href: "mailto:info@jvseoagency.es" },
+  { label: "Email", value: "info@jvseoagency.com", href: "mailto:info@jvseoagency.com" },
   { label: "Teléfono", value: "+34 618 967 972", href: "tel:+34618967972" },
   { label: "Ubicación", value: "Madrid, España" },
   { label: "Horario", value: "Lun a Vie · 09:00 a 18:00 (GMT+1)" }

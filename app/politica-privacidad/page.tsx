@@ -29,7 +29,7 @@ export default function PrivacidadPage() {
         <AppleReveal delay={0.05}>
           <section className="interactive-lift rounded-2xl border border-white/10 bg-white/5 p-6">
             <h2 className="text-2xl font-semibold text-white">Responsable del tratamiento</h2>
-            <p className="mt-2">JVSEO Agency · Contacto: info@jvseoagency.es</p>
+            <p className="mt-2">JVSEO Agency · Contacto: info@jvseoagency.com</p>
           </section>
         </AppleReveal>
         <AppleReveal delay={0.1}>
@@ -56,7 +56,7 @@ export default function PrivacidadPage() {
             <h2 className="text-2xl font-semibold text-white">Tus derechos</h2>
             <p className="mt-2">
               Puedes ejercer los derechos de acceso, rectificación, supresión, oposición,
-              limitación del tratamiento y portabilidad escribiendo a info@jvseoagency.es. También
+              limitación del tratamiento y portabilidad escribiendo a info@jvseoagency.com. También
               puedes presentar una reclamación ante la Agencia Española de Protección de Datos.
             </p>
           </section>
