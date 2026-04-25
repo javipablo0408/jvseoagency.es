@@ -16,7 +16,7 @@ const faqs = [
   {
     question: "¿Cuánto cuesta una web corporativa en Madrid?",
     answer:
-      "Una web corporativa básica en Madrid (5-8 páginas, diseño a medida, SEO técnico) parte de 1.500€. Una web completa con blog, animaciones y CRM oscila entre 3.500€ y 7.000€. Los proyectos avanzados con área privada o multiidioma van de 7.000€ a 15.000€. Consulta nuestra página de precios para el desglose completo."
+      "Una web corporativa básica en Madrid (5-8 páginas, diseño a medida, SEO técnico) parte desde 800€. Una web completa con blog, animaciones y CRM desde 2.000€. Los proyectos avanzados con área privada o multiidioma desde 4.500€. Consulta nuestra página de precios para el desglose completo."
   },
   {
     question: "¿Cuánto tarda una web en Madrid?",
@@ -188,7 +188,7 @@ export default function DisenoWebMadridPage() {
               ["50+", "Proyectos en Madrid"],
               ["4-6 sem", "Entrega media"],
               ["24h", "Para el presupuesto"],
-              ["1.500€", "Desde"]
+              ["800€", "Desde"]
             ].map(([value, label]) => (
               <div key={label} className="glass rounded-3xl p-6 text-center">
                 <p className="text-3xl font-semibold text-white">{value}</p>

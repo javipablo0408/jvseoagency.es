@@ -8,7 +8,7 @@ import { BreadcrumbJsonLd, FaqJsonLd, ServiceJsonLd } from "@/components/structu
 export const metadata: Metadata = {
   title: "Precios de diseño web, apps y automatización IA en Madrid · 2026",
   description:
-    "Rangos de precio reales para webs corporativas, ecommerce, apps a medida y automatizaciones IA en Madrid. Sin sorpresas: qué incluye cada presupuesto y cómo comparar opciones.",
+      "Precios desde 500€ para webs corporativas, ecommerce, apps a medida y automatizaciones IA en Madrid. Sin sorpresas: qué incluye cada presupuesto y cómo comparar opciones.",
   alternates: { canonical: "/precios" }
 };
 
@@ -20,7 +20,7 @@ const plans = [
     tiers: [
       {
         name: "Básica",
-        range: "1.500€ – 3.500€",
+        range: "Desde 800€",
         time: "4 – 6 semanas",
         includes: [
           "5 a 8 páginas a medida",
@@ -33,7 +33,7 @@ const plans = [
       },
       {
         name: "Completa",
-        range: "3.500€ – 7.000€",
+        range: "Desde 2.000€",
         time: "6 – 8 semanas",
         includes: [
           "Todo lo del plan Básica",
@@ -46,7 +46,7 @@ const plans = [
       },
       {
         name: "Avanzada",
-        range: "7.000€ – 15.000€",
+        range: "Desde 4.500€",
         time: "8 – 12 semanas",
         includes: [
           "Todo lo del plan Completa",
@@ -66,7 +66,7 @@ const plans = [
     tiers: [
       {
         name: "Catálogo",
-        range: "2.500€ – 5.000€",
+        range: "Desde 1.500€",
         time: "5 – 7 semanas",
         includes: [
           "Hasta 200 productos",
@@ -79,7 +79,7 @@ const plans = [
       },
       {
         name: "Tienda Completa",
-        range: "5.000€ – 12.000€",
+        range: "Desde 3.500€",
         time: "7 – 10 semanas",
         includes: [
           "Catálogo ilimitado",
@@ -92,7 +92,7 @@ const plans = [
       },
       {
         name: "Marketplace / Custom",
-        range: "12.000€ – 30.000€+",
+        range: "Desde 7.000€",
         time: "3 – 6 meses",
         includes: [
           "Múltiples vendedores o sedes",
@@ -112,7 +112,7 @@ const plans = [
     tiers: [
       {
         name: "Panel Interno",
-        range: "5.000€ – 15.000€",
+        range: "Desde 3.000€",
         time: "6 – 10 semanas",
         includes: [
           "Gestión de datos con roles y permisos",
@@ -125,7 +125,7 @@ const plans = [
       },
       {
         name: "App de Negocio",
-        range: "15.000€ – 40.000€",
+        range: "Desde 8.000€",
         time: "3 – 6 meses",
         includes: [
           "Flujos de trabajo complejos",
@@ -138,7 +138,7 @@ const plans = [
       },
       {
         name: "SaaS / Plataforma",
-        range: "40.000€ – 100.000€+",
+        range: "Desde 25.000€",
         time: "6 – 12 meses",
         includes: [
           "Multi-tenant con billing integrado",
@@ -158,7 +158,7 @@ const plans = [
     tiers: [
       {
         name: "Flujo Básico",
-        range: "800€ – 2.000€",
+        range: "Desde 500€",
         time: "48h – 1 semana",
         includes: [
           "1 a 3 flujos automatizados",
@@ -171,7 +171,7 @@ const plans = [
       },
       {
         name: "Sistema Completo",
-        range: "2.000€ – 6.000€",
+        range: "Desde 1.200€",
         time: "2 – 4 semanas",
         includes: [
           "3 a 8 flujos conectados",
@@ -184,7 +184,7 @@ const plans = [
       },
       {
         name: "Agencia / Empresa",
-        range: "6.000€ – 15.000€+",
+        range: "Desde 3.500€",
         time: "4 – 8 semanas",
         includes: [
           "Múltiples agentes IA coordinados",
@@ -235,7 +235,7 @@ export default function PreciosPage() {
       />
       <ServiceJsonLd
         name="Precios de diseño web, apps y automatización IA en Madrid"
-        description="Rangos de precio reales para webs corporativas, ecommerce, apps a medida y automatizaciones IA. Sin sorpresas, presupuesto cerrado."
+        description="Precios desde 500€ para webs, ecommerce, apps y automatizaciones IA en Madrid. Sin sorpresas, presupuesto cerrado."
         url="/precios"
         serviceType="Digital Agency Services"
       />

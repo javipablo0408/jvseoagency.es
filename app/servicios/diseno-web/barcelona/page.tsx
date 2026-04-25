@@ -21,7 +21,7 @@ const faqs = [
   {
     question: "¿Cuánto cuesta una web corporativa en Barcelona?",
     answer:
-      "Los precios son los mismos que en Madrid. Una web corporativa básica (5-8 páginas, SEO técnico, formulario) parte de 1.500€. Una web completa con blog, casos y animaciones está entre 3.500€ y 7.000€. Consulta nuestra página de precios para el desglose completo."
+      "Los precios son los mismos que en Madrid. Una web corporativa básica (5-8 páginas, SEO técnico, formulario) parte desde 800€. Una web completa con blog, casos y animaciones desde 2.000€. Consulta nuestra página de precios para el desglose completo."
   },
   {
     question: "¿Hacéis webs en catalán además de castellano?",
