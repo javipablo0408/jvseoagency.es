@@ -1,0 +1,254 @@
+{
+  "name": "Leads Web -> Email JVSEO",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "leads-jvseo",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "c6a19935-9a38-4e64-abe2-b8ed920bc6e9",
+      "name": "Webhook Leads",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        220,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "416af5f0-7ed9-4805-90af-97601105bf59",
+              "name": "name",
+              "value": "={{$json.body.name}}",
+              "type": "string"
+            },
+            {
+              "id": "2428a27b-49bf-4e5a-816d-80ca24f7aa97",
+              "name": "email",
+              "value": "={{$json.body.email}}",
+              "type": "string"
+            },
+            {
+              "id": "9239b737-2fd3-4560-8e22-7664be682365",
+              "name": "company",
+              "value": "={{$json.body.company || ''}}",
+              "type": "string"
+            },
+            {
+              "id": "37cd0af7-aded-41fa-af18-81e9d3d49989",
+              "name": "interest",
+              "value": "={{$json.body.interest}}",
+              "type": "string"
+            },
+            {
+              "id": "6603b212-71e4-44f1-8cb3-ee91a3369461",
+              "name": "message",
+              "value": "={{$json.body.message}}",
+              "type": "string"
+            },
+            {
+              "id": "e3b64384-6909-4115-96d8-89442c206844",
+              "name": "website",
+              "value": "={{$json.body.website || ''}}",
+              "type": "string"
+            },
+            {
+              "id": "b143d452-8f08-4d1f-a1df-96f16e252f38",
+              "name": "source",
+              "value": "landing-apple-leads",
+              "type": "string"
+            },
+            {
+              "id": "eab899b9-b583-43d7-968b-03e4b99e370f",
+              "name": "createdAt",
+              "value": "={{$now.toISO()}}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "258c20da-0954-4d6d-976b-e676f490266f",
+      "name": "Normalizar Lead",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        460,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "options": {
+          "caseSensitive": false,
+          "leftValue": "",
+          "typeValidation": "strict",
+          "version": 2
+        },
+        "conditions": {
+          "combinator": "and",
+          "conditions": [
+            {
+              "id": "8bdca8bc-fe79-46ff-ac58-52bf777923a5",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              },
+              "leftValue": "={{$json.email}}",
+              "rightValue": "@"
+            },
+            {
+              "id": "0d545c0e-4379-4091-8612-2b5f91e2b8fe",
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              },
+              "leftValue": "={{$json.message.length}}",
+              "rightValue": 9
+            },
+            {
+              "id": "4d925f6f-15c4-4e1d-a501-386e5061606c",
+              "operator": {
+                "type": "string",
+                "operation": "isEmpty"
+              },
+              "leftValue": "={{$json.website}}",
+              "rightValue": ""
+            }
+          ]
+        }
+      },
+      "id": "512c27fd-ce4b-4d54-a9bb-07bf902c3235",
+      "name": "Validar Lead",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "fromEmail": "no-reply@jvseoagency.com",
+        "toEmail": "info@jvseoagency.com",
+        "subject": "=Nuevo lead web: {{$json.name}} · {{$json.interest}}",
+        "emailType": "text",
+        "message": "=Nombre: {{$json.name}}\nEmail: {{$json.email}}\nEmpresa: {{$json.company || '-'}}\nInteres: {{$json.interest}}\n\nMensaje:\n{{$json.message}}\n\nFecha: {{$json.createdAt}}\nOrigen: {{$json.source}}",
+        "options": {
+          "replyTo": "={{$json.email}}"
+        }
+      },
+      "id": "bc032428-909c-478c-bf8c-64157c779b01",
+      "name": "Enviar Email Lead",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        940,
+        200
+      ],
+      "notesInFlow": true,
+      "notes": "Configura credenciales SMTP en este nodo antes de activar."
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { ok: true, message: 'Lead recibido' } }}",
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "id": "7a3bf0d7-b3bd-498f-bbc1-643d81f5fab3",
+      "name": "Responder 200",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1160,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { ok: false, error: 'Datos invalidos' } }}",
+        "options": {
+          "responseCode": 400
+        }
+      },
+      "id": "761c9ee3-9f40-40a4-bc52-4bbfb105222e",
+      "name": "Responder 400",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        940,
+        420
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Leads": {
+      "main": [
+        [
+          {
+            "node": "Normalizar Lead",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalizar Lead": {
+      "main": [
+        [
+          {
+            "node": "Validar Lead",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Validar Lead": {
+      "main": [
+        [
+          {
+            "node": "Enviar Email Lead",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Responder 400",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar Email Lead": {
+      "main": [
+        [
+          {
+            "node": "Responder 200",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": false
+  },
+  "versionId": "27d32c36-63e5-4a23-80f5-302bc0b09056",
+  "active": false
+}

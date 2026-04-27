@@ -14,7 +14,8 @@ const leadSchema = z.object({
 const RATE_WINDOW_MS = 60_000;
 const RATE_LIMIT = 5;
 const requestLog = new Map<string, number[]>();
-const webhookUrl = process.env.LEADS_WEBHOOK_URL;
+const webhookUrl =
+  process.env.LEADS_WEBHOOK_URL ?? "https://n8n.jvseoagency.com/webhook/leads-jvseo";
 const resendApiKey = process.env.RESEND_API_KEY;
 const leadToEmail = process.env.LEADS_TO_EMAIL ?? "info@jvseoagency.com";
 const leadFromEmail =
