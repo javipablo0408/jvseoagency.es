@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { Resend } from "resend";
 import { z } from "zod";
 
 const leadSchema = z.object({
@@ -14,6 +15,12 @@ const RATE_WINDOW_MS = 60_000;
 const RATE_LIMIT = 5;
 const requestLog = new Map<string, number[]>();
 const webhookUrl = process.env.LEADS_WEBHOOK_URL;
+const resendApiKey = process.env.RESEND_API_KEY;
+const leadToEmail = process.env.LEADS_TO_EMAIL ?? "info@jvseoagency.com";
+const leadFromEmail =
+  process.env.LEADS_FROM_EMAIL ?? "JVSEO Leads <onboarding@resend.dev>";
+
+const resend = resendApiKey ? new Resend(resendApiKey) : null;
 
 function checkRateLimit(ip: string) {
   const now = Date.now();
@@ -56,6 +63,35 @@ export async function POST(request: Request) {
       source: "landing-apple-leads"
     };
 
+    let delivered = false;
+
+    if (resend) {
+      try {
+        await resend.emails.send({
+          from: leadFromEmail,
+          to: [leadToEmail],
+          replyTo: parsed.data.email,
+          subject: `Nuevo lead web: ${parsed.data.name} · ${parsed.data.interest}`,
+          text: [
+            `Nombre: ${parsed.data.name}`,
+            `Email: ${parsed.data.email}`,
+            `Empresa: ${parsed.data.company || "-"}`,
+            `Interés: ${parsed.data.interest}`,
+            "",
+            "Mensaje:",
+            parsed.data.message,
+            "",
+            `Fecha: ${leadPayload.createdAt}`,
+            `Origen: ${leadPayload.source}`,
+            `IP: ${ip}`
+          ].join("\n")
+        });
+        delivered = true;
+      } catch {
+        console.log("No se pudo enviar email con Resend.");
+      }
+    }
+
     if (webhookUrl) {
       try {
         await fetch(webhookUrl, {
@@ -63,11 +99,20 @@ export async function POST(request: Request) {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(leadPayload)
         });
+        delivered = true;
       } catch {
-        console.log("Webhook no disponible, lead en fallback log:", leadPayload);
+        console.log("Webhook no disponible para lead:", leadPayload);
       }
-    } else {
-      console.log("Nuevo lead:", leadPayload);
+    }
+
+    if (!delivered) {
+      return NextResponse.json(
+        {
+          error:
+            "No hay entrega de leads configurada. Define RESEND_API_KEY o LEADS_WEBHOOK_URL."
+        },
+        { status: 503 }
+      );
     }
 
     return NextResponse.json({ ok: true }, { status: 200 });
